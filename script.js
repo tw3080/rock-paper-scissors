@@ -1,6 +1,11 @@
+function getPlayerChoice() {
+    let choice = prompt('Rock, paper, scissors: GO!', '');
+    return choice;
+}
+
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3) + 1;
-    console.log('Computer choice: ' + choice);
+    // console.log('Computer choice: ' + choice);
 
     // switch (choice) {
     //     case 1:
@@ -26,7 +31,6 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     let playerChoice = playerSelection.toLowerCase();
     let computerChoice = computerSelection.toLowerCase();
-    console.log('Player choice: ' + playerChoice);
 
     if (playerChoice === 'rock' && computerChoice === 'scissors') {
         return 'You win! Rock beats scissors.';
@@ -45,10 +49,26 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-const playerSelection = 'rock';
+function game() {
+    for (let i = 0; i < 5; i++) {
+        if (i < 5) {
+            console.log(playRound(playerSelection, computerSelection));
+        } else {
+            console.log('Game over!');
+        }
+        console.log(i);
+        // console.log(playRound(playerSelection, computerSelection));
+    }
+}
+
+// const playerSelection = 'rock';
+const playerSelection = getPlayerChoice();
 const computerSelection = getComputerChoice();
+console.log('Your choice: ' + playerSelection);
 console.log('Computer choice: ' + computerSelection);
 console.log(playRound(playerSelection, computerSelection));
+
+// game();
 
 // player win conditions:
 //     rock beats scissors
@@ -59,3 +79,23 @@ console.log(playRound(playerSelection, computerSelection));
 //     rock loses to paper
 //     paper loses to scissors
 //     scissors loses to rock
+
+//
+
+// interface: prompt
+// inputs: user selection of rock, paper, or scissors && computer selection of rock, paper, or scissors
+// output: game results from player's perspective
+
+//
+
+// for every round
+// get the player's input
+// get the computer input
+// compare player input to computer input
+// tally score
+// display round results
+
+// if the round is less than 5
+// play a round
+// else
+// display the winner
