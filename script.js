@@ -51,24 +51,24 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     for (let i = 0; i < 5; i++) {
-        if (i < 5) {
-            console.log(playRound(playerSelection, computerSelection));
-        } else {
-            console.log('Game over!');
-        }
-        console.log(i);
-        // console.log(playRound(playerSelection, computerSelection));
+        console.log('Round: ' + +(i + 1));
+        let playerSelection = getPlayerChoice();
+        console.log('Player choice: ' + playerSelection);
+        let computerSelection = getComputerChoice();
+        console.log('Computer choice: ' + computerSelection);
+
+        console.log(playRound(playerSelection, computerSelection));
     }
 }
 
 // const playerSelection = 'rock';
-const playerSelection = getPlayerChoice();
-const computerSelection = getComputerChoice();
-console.log('Your choice: ' + playerSelection);
-console.log('Computer choice: ' + computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+// const playerSelection = prompt('Rock, paper, scissors: GO!', '');
+// console.log('Your choice: ' + playerSelection);
+// const computerSelection = getComputerChoice();
+// console.log('Computer choice: ' + computerSelection);
+// console.log(playRound(playerSelection, computerSelection));
 
-// game();
+game();
 
 // player win conditions:
 //     rock beats scissors
