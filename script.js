@@ -1,23 +1,15 @@
+let playerScore = 0;
+let computerScore = 0;
+
+// Get the user's choice
 function getPlayerChoice() {
     let choice = prompt('Rock, paper, scissors: GO!', '');
     return choice;
 }
 
+// Get the computer's choice
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3) + 1;
-    // console.log('Computer choice: ' + choice);
-
-    // switch (choice) {
-    //     case 1:
-    //         return 'rock';
-    //         break;
-    //     case 2:
-    //         return 'paper';
-    //         break;
-    //     case 3:
-    //         return 'scissors';
-    //         break;
-    // }
 
     if (choice === 1) {
         return 'rock';
@@ -28,6 +20,7 @@ function getComputerChoice() {
     }
 }
 
+// Play 1 round of the game
 function playRound(playerSelection, computerSelection) {
     let playerChoice = playerSelection.toLowerCase();
     let computerChoice = computerSelection.toLowerCase();
@@ -49,6 +42,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+// Play 5 rounds of the game, tally score, and declare winner
 function game() {
     for (let i = 0; i < 5; i++) {
         console.log('Round: ' + +(i + 1));
@@ -56,46 +50,31 @@ function game() {
         console.log('Player choice: ' + playerSelection);
         let computerSelection = getComputerChoice();
         console.log('Computer choice: ' + computerSelection);
+        let roundResult = playRound(playerSelection, computerSelection);
+        console.log('Result: ' + roundResult);
 
-        console.log(playRound(playerSelection, computerSelection));
+        if (roundResult.includes('win')) {
+            playerScore++;
+            console.log('Player score: ' + playerScore);
+            console.log('Computer score: ' + computerScore);
+        } else if (roundResult.includes('lose')) {
+            computerScore++;
+            console.log('Player score: ' + playerScore);
+            console.log('Computer score: ' + computerScore);
+        } else {
+            console.log('Player score: ' + playerScore);
+            console.log('Computer score: ' + computerScore);
+        }
+        console.log('--');
+    }
+
+    if (playerScore > computerScore) {
+        console.log('Gratz, you won :)');
+    } else if (playerScore < computerScore) {
+        console.log('The computer won :(');
+    } else {
+        console.log('It\'s a tie!');
     }
 }
 
-// const playerSelection = 'rock';
-// const playerSelection = prompt('Rock, paper, scissors: GO!', '');
-// console.log('Your choice: ' + playerSelection);
-// const computerSelection = getComputerChoice();
-// console.log('Computer choice: ' + computerSelection);
-// console.log(playRound(playerSelection, computerSelection));
-
 game();
-
-// player win conditions:
-//     rock beats scissors
-//     paper beats rock
-//     scissors beats paper
-
-// player lose conditions:
-//     rock loses to paper
-//     paper loses to scissors
-//     scissors loses to rock
-
-//
-
-// interface: prompt
-// inputs: user selection of rock, paper, or scissors && computer selection of rock, paper, or scissors
-// output: game results from player's perspective
-
-//
-
-// for every round
-// get the player's input
-// get the computer input
-// compare player input to computer input
-// tally score
-// display round results
-
-// if the round is less than 5
-// play a round
-// else
-// display the winner
