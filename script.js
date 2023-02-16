@@ -1,13 +1,13 @@
 let playerScore = 0;
 let computerScore = 0;
 
-// Get the user's choice
+// Get user's choice
 function getPlayerChoice() {
-    let choice = prompt('Rock, paper, scissors: GO!', '');
+    let choice = prompt('Rock, paper, scissors: GO!', '').toLowerCase();
     return choice;
 }
 
-// Get the computer's choice
+// Get computer's choice
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3) + 1;
 
@@ -22,20 +22,17 @@ function getComputerChoice() {
 
 // Play 1 round of the game
 function playRound(playerSelection, computerSelection) {
-    let playerChoice = playerSelection.toLowerCase();
-    let computerChoice = computerSelection.toLowerCase();
-
-    if (playerChoice === 'rock' && computerChoice === 'scissors') {
+    if (playerSelection === 'rock' && computerSelection === 'scissors') {
         return 'You win! Rock beats scissors.';
-    } else if (playerChoice === 'paper' && computerChoice === 'rock') {
+    } else if (playerSelection === 'paper' && computerSelection === 'rock') {
         return 'You win! Paper beats rock.';
-    } else if (playerChoice === 'scissors' && computerChoice === 'paper') {
+    } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
         return 'You win! Scissors beats paper.';
-    } else if (playerChoice === 'rock' && computerChoice === 'paper') {
+    } else if (playerSelection === 'rock' && computerSelection === 'paper') {
         return 'You lose! Paper beats rock.';
-    } else if (playerChoice === 'paper' && computerChoice === 'scissors') {
+    } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
         return 'You lose! Scissors beats paper.';
-    } else if (playerChoice === 'scissors' && computerChoice === 'rock') {
+    } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
         return 'You lose! Rock beats scissors.';
     } else {
         return 'Tie!';
@@ -45,6 +42,7 @@ function playRound(playerSelection, computerSelection) {
 // Play 5 rounds of the game, tally score, and declare winner
 function game() {
     for (let i = 0; i < 5; i++) {
+        // Get player and computer choices
         console.log('Round: ' + +(i + 1));
         let playerSelection = getPlayerChoice();
         console.log('Player choice: ' + playerSelection);
@@ -53,6 +51,7 @@ function game() {
         let roundResult = playRound(playerSelection, computerSelection);
         console.log('Result: ' + roundResult);
 
+        // Tally the round's score
         if (roundResult.includes('win')) {
             playerScore++;
             console.log('Player score: ' + playerScore);
@@ -68,6 +67,7 @@ function game() {
         console.log('--');
     }
 
+    // Determine winner
     if (playerScore > computerScore) {
         console.log('Gratz, you won :)');
     } else if (playerScore < computerScore) {
