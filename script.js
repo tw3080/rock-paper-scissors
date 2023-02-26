@@ -9,7 +9,7 @@ let computerScore = 0;
 
 // get computer's choice
 function getComputerChoice() {
-    let choice = Math.floor(Math.random() * 3) + 1;
+    const choice = Math.floor(Math.random() * 3) + 1;
 
     if (choice === 1) {
         return 'rock';
@@ -43,6 +43,8 @@ const buttons = document.querySelectorAll('button');
 const resultsContainer = document.querySelector('#results');
 const selectionText = document.createElement('p');
 const resultsText = document.createElement('p');
+const scoreText = document.createElement('p');
+const winnerText = document.createElement('p');
 
 // console.log(buttons);
 
@@ -65,6 +67,30 @@ buttons.forEach((button) => {
         const roundResult = playRound(playerSelection, computerSelection);
         resultsText.textContent = roundResult;
         resultsContainer.appendChild(resultsText);
+
+        // tally the round's score
+        if (roundResult.includes('win')) {
+            playerScore++;
+        } else if (roundResult.includes('lose')) {
+            computerScore++;
+        }
+
+        // display the current score
+        scoreText.textContent = `Player score: ${playerScore}
+        Computer score: ${computerScore}`;
+        scoreText.setAttribute('style', 'white-space: pre-line');
+        resultsContainer.appendChild(scoreText);
+
+        // after 5 wins, display the winner
+        if (playerScore === 5 || computerScore === 5) {
+            if (playerScore > computerScore) {
+                console.log('Gratz, you won :)');
+            } else if (playerScore < computerScore) {
+                console.log('The computer won :(');
+            } else {
+                console.log('It\'s a tie!');
+            }
+        }
     });
 });
 
